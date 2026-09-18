@@ -124,13 +124,6 @@ protected:
         }
     }
 
-    // Refreshes _boardImgSize from whichever theme image is actually
-    // active. Previously _boardImgSize was only ever set once, from
-    // _pinkBoard, in the constructor — so calculateBoardPlacement()'s
-    // aspect-ratio math used the pink image's dimensions even while
-    // drawing a different theme's image, misaligning _ptOrig/_cellSize/
-    // _cellRects (and therefore cell clicks and drawn digits) from the
-    // board image on any non-default theme.
     void updateBoardImageSize()
     {
         gui::Image* img = getCurrentBoardImage();
@@ -414,20 +407,10 @@ protected:
         const gui::CoordType btnH   = 44;
         const gui::CoordType stackH = btnH * 4 + rowGap * 3; // Start/Notes/Hint/ShowNumber
 
-        // Nominal (preferred) sizes for the timer/poncho/bubble block.
-        const gui::CoordType timerH        = 60; // always shown at full size — it's the one
-                                                   // piece of info in this block that matters
+        const gui::CoordType timerH        = 60; 
         const gui::CoordType ponchoHNom    = 110;
         const gui::CoordType bubbleHNom    = 100;
 
-        // Previously these three were laid out top-down with fixed
-        // heights while the button stack below was laid out bottom-up
-        // with its own fixed height, with nothing checking whether the
-        // two actually fit in _rightZone — so on a short enough window
-        // they'd collide (poncho/bubble overlapping Get Hint/Show
-        // Number). Now the poncho image and message bubble shrink first,
-        // and disappear once there isn't enough room left for them at
-        // all, so the button stack never gets overlapped.
         gui::CoordType availableForTop = _rightZone.height() - stackH - rowGap;
         gui::CoordType remaining = availableForTop - timerH - rowGap;
 
@@ -584,11 +567,6 @@ public:
 
     void refresh() { reDraw(); }
 
-    // Call this whenever the board's theme changes. Unlike onResize(),
-    // nothing else currently marks the cached placement dirty on a theme
-    // switch, so calculateBoardPlacement() would otherwise keep using
-    // stale _ptOrig/_cellSize/_cellRects computed for the previous theme's
-    // image dimensions.
     void themeChanged()
     {
         _calcBoardPlacement = true;
