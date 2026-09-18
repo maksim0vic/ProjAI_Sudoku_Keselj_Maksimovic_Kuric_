@@ -1,6 +1,9 @@
 <?xml version='1.0'?>
 <DevRes version="2024.07.16" regionals="Common/Regionals"
-		displayName="Poncho Girl Sudoku">
+		displayName="Poncho Girl Sudoku"
+		maintainer="Anđela Maksimović" 
+		email="amaksimovi1@etf.unsa.ba"
+		comment="Cute app for learning Sudoku">
 	<Langs>
 		<Lang id="EN" name="English"/>
 	</Langs>
