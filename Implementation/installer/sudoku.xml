@@ -18,6 +18,7 @@
     <MutableResource/>
 
     <Setup licenseFileName="~natID.SDK/DevEnv/License.txt"
+           maintainer="Poncho Girl and friends <amaksimovi1@etf.unsa.ba> "
            categories="Education;Science"
            win:programGroup="Sudoku"
            win:width="440"
