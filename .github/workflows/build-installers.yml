@@ -369,19 +369,23 @@ jobs:
 
             | Platform | File |
             |----------|------|
-            | Windows | `${{ env.APP_NAME }}-win.zip` (installer .exe + .msi - keep both together) |
-            | macOS Apple Silicon | `${{ env.APP_NAME }}-macOS-Silicon.zip` |
-            | macOS Intel | `${{ env.APP_NAME }}-macOS-Intel.zip` |
-            | Linux (Ubuntu 24.04+) | `${{ env.APP_NAME }}-linux.zip` (contains .deb) |
+            | Windows | sudoku-win.zip (installer exe + msi, keep both together) |
+            | macOS Apple Silicon | sudoku-macOS-Silicon.zip |
+            | macOS Intel | sudoku-macOS-Intel.zip |
+            | Linux (Ubuntu 24.04+) | sudoku-linux.zip (contains deb) |
 
             ### Install notes
-            - **Windows**: unzip, run the .exe (or the .msi directly)
-            - **macOS**: unzip, drag to Applications. First launch may be blocked by Gatekeeper:
-              open Terminal and run
-              `sudo xattr -dr com.apple.quarantine /Applications/sudoku.app`
-            - **Linux**: unzip, `sudo apt install ./*.deb`
+
+            Windows: unzip, run the exe, or install the msi directly.
+
+            macOS: unzip and drag to Applications. If macOS blocks the first launch,
+            open Terminal and run:
+            sudo xattr -dr com.apple.quarantine "/Applications/WiFi AP Placement Optimization.app"
+            then launch the app again.
+
+            Linux: unzip, then run sudo apt install ./*.deb
           files: |
             artifacts/${{ env.APP_NAME }}-win/*
             artifacts/${{ env.APP_NAME }}-macOS-Silicon/*
             artifacts/${{ env.APP_NAME }}-macOS-Intel/*
-            artifacts/${{ env.
+            artifacts/${{ env.APP_NAME }}-linux/*
